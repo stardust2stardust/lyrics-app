@@ -1,8 +1,7 @@
 import React from "react";
-import SongCard from "./SongCard";
+import ArtistCard from "./ArtistCard";
 
 const SearchResults = ({ results }) => {
-  console.log("results: ", results);
   const artistList = results?.message.body.artist_list;
   // const resultsArray = results?.message.body;
   // const artistList = resultsArray?.artist_list;
@@ -15,7 +14,7 @@ const SearchResults = ({ results }) => {
             <li
               key={item.artist.artist_id}
               className="">
-              <SongCard artist={item.artist} />
+              <ArtistCard artist={item.artist} />
             </li>
           ))}
         </ul>
