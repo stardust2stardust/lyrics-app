@@ -5,7 +5,8 @@ import SearchForm from "./SearchForm";
 import SearchResults from "./SearchResults";
 
 const Search = () => {
-  const [artist, setArtist] = useState("Alan Walker");
+  const [artist, setArtist] = useState("Eminem");
+  const [track, setTrack] = useState("Lose Yourself");
   const [lyrics, setLyrics] = useState(null);
   const [results, setResults] = useState(null);
 
@@ -25,14 +26,16 @@ const Search = () => {
   };
 
   return (
-    <div>
+    <section>
       <SearchForm
         artist={artist}
         setArtist={setArtist}
+        track={track}
+        setTrack={setTrack}
         getResults={getResults}
       />
       <SearchResults results={results} />
-    </div>
+    </section>
   );
 };
 

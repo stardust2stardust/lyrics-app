@@ -1,3 +1,4 @@
+import Lyrics from "@/src/components/Lyrics";
 import Search from "@/src/components/Search";
 
 export default function Home() {

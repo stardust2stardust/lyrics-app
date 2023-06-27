@@ -4,10 +4,10 @@ export default async function handler(req, res) {
   const options = {
     method: "GET",
     // url: "https://api.deezer.com/search",
-    url: "https://api.musixmatch.com/ws/1.1/artist.search",
+    url: "https://api.musixmatch.com/ws/1.1/artist.albums.get",
     params: {
       apikey: process.env.MUSIXMATCH_API_KEY,
-      q_artist: req.query.artist,
+      artist_id: req.query.artistId,
       //q_track: req.query.track,
       per_page: "10",
       page: "1",
