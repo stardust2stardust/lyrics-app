@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
+import { Markup } from "interweave";
 
 export default function Home() {
-  const [title, setTitle] = useState("Alan Walker");
+  const [title, setTitle] = useState("");
   const [searchResults, setSearchResults] = useState(null);
   const [lyrics, setLyrics] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -22,6 +23,7 @@ export default function Home() {
     }
   };
   const getLyrics = async (id) => {
+    console.log("getLyrics is firing");
     try {
       setSearchResults(null);
       setLoading(true);
@@ -29,8 +31,10 @@ export default function Home() {
         params: { id },
       });
       const { data } = res;
+      console.log("data from getLyrics: ", data);
       setLoading(false);
-      setLyrics(data.response.lyrics);
+      setLyrics(data.lyrics);
+      console.log("lyrics object/state: ", data.lyrics);
     } catch (error) {
       setLoading(false);
     }
@@ -54,7 +58,7 @@ export default function Home() {
         <input
           type="text"
           className="flex w-full sm:w-1/3 rounded-lg px-5 py-3 text-base text-background font-semibold focus:outline-none focus:ring-2 focus:ring-active"
-          placeholder="Alan Walker"
+          placeholder="artist name"
           onChange={(e) => {
             setTitle(e.target.value);
             setSearchResults(null);
@@ -114,11 +118,11 @@ export default function Home() {
       {lyrics && (
         <div className="mt-10 max-w-2xl">
           <h2 className="text-2xl font-bold text-center text-active">
-            Lyrics for {lyrics.trackingData.Title}
+            Lyrics for {lyrics.tracking_data.title}
           </h2>
 
           <p className="mt-6 leading-loose text-primary text-xl">
-            {lyrics.lyrics.body.plain}
+            <Markup content={lyrics.lyrics.body.html} />
           </p>
         </div>
       )}

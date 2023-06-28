@@ -3,7 +3,8 @@ import axios from "axios";
 export default async function handler(req, res) {
   const options = {
     method: "GET",
-    url: `https://genius-song-lyrics1.p.rapidapi.com/songs/${req.query.id}/lyrics/`,
+    url: `https://genius-song-lyrics1.p.rapidapi.com/song/lyrics/`,
+    params: { id: req.query.id },
     headers: {
       "x-rapidapi-host": "genius-song-lyrics1.p.rapidapi.com",
       "x-rapidapi-key": process.env.NEXT_PUBLIC_RAPIDAPI_KEY,
