@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   const options = {
     method: "GET",
     url: "https://genius-song-lyrics1.p.rapidapi.com/search/",
-    params: { q: req.query.title, per_page: "10", page: "1" },
+    params: { q: req.query.title, per_page: "16", page: "1" },
     headers: {
       "x-rapidapi-host": "genius-song-lyrics1.p.rapidapi.com",
       "x-rapidapi-key": process.env.NEXT_PUBLIC_RAPIDAPI_KEY,
