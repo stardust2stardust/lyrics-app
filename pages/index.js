@@ -45,7 +45,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col md:px-12 px-0 relative bg-background font-poppins items-center min-h-screen">
+    <div className="bg-n950 flex flex-col md:px-12 p-8 relative font-poppins items-center min-h-screen">
       <div className="flex flex-col gap-8">
         <Header />
         <SearchForm

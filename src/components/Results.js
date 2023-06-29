@@ -9,7 +9,7 @@ const Results = ({ getLyrics, searchResults }) => {
           <li
             key={song.result.id}
             className="">
-            <div className="p-4 bg-secondary rounded-lg">
+            <div className="h-full p-5 bg-n800 rounded-lg">
               <div className="flex flex-col gap-3">
                 <div className="flex items-center justify-center">
                   <Image
@@ -20,15 +20,13 @@ const Results = ({ getLyrics, searchResults }) => {
                     height={300}
                   />
                 </div>
-                <div className="text-center flex flex-col gap-3">
-                  <h3 className="text-lg font-bold break-words overflow-x-auto text-active ">
+                <div className="text-center flex flex-col gap-3 tracking-wide">
+                  <h3 className="text-xl font-bold break-words overflow-x-auto text-n300 ">
                     {song.result.title}
                   </h3>
-                  <span className="text-sm text-light">
-                    {song.result.artist_names}
-                  </span>
+                  <h4 className="text-primary">{song.result.artist_names}</h4>
                   <button
-                    className="text-md text-active"
+                    className="text-accent"
                     onClick={() => {
                       getLyrics(song.result.id);
                     }}>

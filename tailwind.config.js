@@ -8,16 +8,21 @@ module.exports = {
   ],
 
   theme: {
+    extend: {
+      colors: {
+        n950: "#030712", // gray-950
+        n800: "#1f2937", // gray-800
+        n300: "#d1d5db", // gray-300
+        n100: "#f3f4f6", // gray-100
+        primary: "#06b6d4", // cyan-500
+        secondary: "#6366f1", // indigo-500
+        accent: "#d946ef", // fuchsia-500
+      },
+    },
     fontFamily: {
       poppins: ["Poppins", "sans-serif"],
     },
-    colors: {
-      background: "#030712", // gray-950
-      primary: "#f3f4f6", // gray-100
-      secondary: "#1f2937", // gray-800
-      active: "#0891b2", // cyan-600
-      light: "#d1d5db", // gray-300
-    },
   },
+
   plugins: [],
 };

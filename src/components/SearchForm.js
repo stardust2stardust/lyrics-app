@@ -8,9 +8,9 @@ const SearchForm = ({
   loading,
 }) => {
   return (
-    <div>
+    <div className="mb-6">
       <form
-        className="sm:mx-auto justify-center sm:w-full sm:flex"
+        className="flex flex-col gap-2 sm:mx-auto justify-center sm:w-full sm:flex"
         onSubmit={(e) => {
           getResults();
           e.preventDefault();
@@ -18,8 +18,8 @@ const SearchForm = ({
         }}>
         <input
           type="text"
-          className="flex w-full sm:w-1/3 rounded-lg px-5 py-3 text-base text-background font-semibold focus:outline-none focus:ring-2 focus:ring-active"
-          placeholder="artist name"
+          className="flex w-full rounded-lg px-5 py-3 text-lg text-n800 font-semibold focus:outline-accent "
+          placeholder="artist or song name"
           onChange={(e) => {
             setTitle(e.target.value);
             setSearchResults(null);
@@ -27,9 +27,9 @@ const SearchForm = ({
           }}
         />
 
-        <div className="mt-4 sm:mt-0 sm:ml-3">
+        <div className="">
           <button
-            className="block w-full rounded-lg px-5 py-3 bg-active text-base text-primary font-bold hover:text-active hover:bg-primary sm:px-10"
+            className="w-full rounded-lg px-5 py-3 text-lg text-950 font-bold hover:bg-secondary bg-gradient-to-br from-primary to-secondary"
             type="submit">
             {loading ? <>Loading..</> : <>Search</>}
           </button>
