@@ -12,11 +12,11 @@ module.exports = {
       poppins: ["Poppins", "sans-serif"],
     },
     colors: {
-      background: "#000000",
-      primary: "#FFFFFF",
-      secondary: "#9E9E9E",
-      active: "#F40812",
-      light: "#121212",
+      background: "#030712", // gray-950
+      primary: "#f3f4f6", // gray-100
+      secondary: "#1f2937", // gray-800
+      active: "#0891b2", // cyan-600
+      light: "#d1d5db", // gray-300
     },
   },
   plugins: [],

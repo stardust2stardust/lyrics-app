@@ -2,7 +2,7 @@ import React from "react";
 
 const Header = () => {
   return (
-    <div>
+    <div className="text-center">
       <h1 className="text-6xl font-bold text-primary mt-10">
         <span className="text-active">Lyrics</span> App
       </h1>

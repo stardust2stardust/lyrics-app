@@ -46,14 +46,16 @@ export default function Home() {
 
   return (
     <div className="flex flex-col md:px-12 px-0 relative bg-background font-poppins items-center min-h-screen">
-      <Header />
-      <SearchForm
-        setTitle={setTitle}
-        setSearchResults={setSearchResults}
-        setLyrics={setLyrics}
-        getResults={getResults}
-        loading={loading}
-      />
+      <div className="flex flex-col gap-8">
+        <Header />
+        <SearchForm
+          setTitle={setTitle}
+          setSearchResults={setSearchResults}
+          setLyrics={setLyrics}
+          getResults={getResults}
+          loading={loading}
+        />
+      </div>
 
       {searchResults && (
         <Results

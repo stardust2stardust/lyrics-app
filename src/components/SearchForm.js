@@ -10,7 +10,7 @@ const SearchForm = ({
   return (
     <div>
       <form
-        className="sm:mx-auto mt-20 justify-center sm:w-full sm:flex"
+        className="sm:mx-auto justify-center sm:w-full sm:flex"
         onSubmit={(e) => {
           getResults();
           e.preventDefault();
