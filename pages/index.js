@@ -5,12 +5,14 @@ import Header from "@/src/components/Header";
 import SearchForm from "@/src/components/SearchForm";
 import Results from "@/src/components/Results";
 import Lyrics from "@/src/components/Lyrics";
+import ArtistDetails from "@/src/components/ArtistDetails";
 
 export default function Home() {
   const [title, setTitle] = useState("");
   const [searchResults, setSearchResults] = useState(null);
   const [lyrics, setLyrics] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [artist, setArtist] = useState("");
 
   const getResults = async () => {
     try {
@@ -27,7 +29,6 @@ export default function Home() {
     }
   };
   const getLyrics = async (id) => {
-    console.log("getLyrics is firing");
     try {
       setSearchResults(null);
       setLoading(true);
@@ -35,7 +36,6 @@ export default function Home() {
         params: { id },
       });
       const { data } = res;
-      console.log("data from getLyrics: ", data);
       setLoading(false);
       setLyrics(data.lyrics);
       console.log("lyrics object/state: ", data.lyrics);
@@ -44,8 +44,24 @@ export default function Home() {
     }
   };
 
+  const getArtistInfo = async (id) => {
+    try {
+      setSearchResults(null);
+      setLyrics(false);
+      setLoading(true);
+      const res = await axios.get("api/artist/", {
+        params: { id },
+      });
+      const { data } = res;
+      setLoading(false);
+      setArtist(data.artist);
+    } catch (error) {
+      setLoading(false);
+    }
+  };
+
   return (
-    <div className="bg-n950 flex flex-col md:px-12 p-8 relative font-poppins items-center min-h-screen">
+    <div className="bg-n950 flex flex-col md:px-12 p-5 relative font-poppins items-center min-h-screen">
       <div className="flex flex-col gap-8">
         <Header />
         <SearchForm
@@ -64,7 +80,14 @@ export default function Home() {
         />
       )}
 
-      {lyrics && <Lyrics lyrics={lyrics} />}
+      {lyrics && (
+        <Lyrics
+          lyrics={lyrics}
+          getArtistInfo={getArtistInfo}
+        />
+      )}
+
+      {artist && <ArtistDetails artist={artist} />}
     </div>
   );
 }

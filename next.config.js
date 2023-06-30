@@ -6,6 +6,9 @@ const nextConfig = {
       {
         hostname: "images.genius.com",
       },
+      {
+        hostname: "images.rapgenius.com",
+      },
     ],
   },
 };

@@ -2,15 +2,16 @@ import React from "react";
 import Image from "next/image";
 
 const Results = ({ getLyrics, searchResults }) => {
+  console.log(searchResults);
   return (
-    <div className="p-6">
-      <ul className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    <section className="">
+      <ul className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {searchResults.map((song) => (
           <li
             key={song.result.id}
             className="">
-            <div className="h-full p-5 bg-n800 rounded-lg">
-              <div className="flex flex-col gap-3">
+            <div className="h-full p-5 bg-n900 rounded-lg">
+              <div className="flex flex-col gap-7">
                 <div className="flex items-center justify-center">
                   <Image
                     src={song.result.song_art_image_thumbnail_url}
@@ -24,7 +25,8 @@ const Results = ({ getLyrics, searchResults }) => {
                   <h3 className="text-xl font-bold break-words overflow-x-auto text-n300 ">
                     {song.result.title}
                   </h3>
-                  <h4 className="text-primary">{song.result.artist_names}</h4>
+                  <p className="text-primary">{song.result.artist_names}</p>
+                  {/* <p className="text-primary">{song.result.id}</p> */}
                   <button
                     className="text-accent"
                     onClick={() => {
@@ -38,7 +40,7 @@ const Results = ({ getLyrics, searchResults }) => {
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 };
 
