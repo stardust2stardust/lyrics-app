@@ -1,22 +1,37 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import AppContext from "@/src/components/AppContext";
 
 import Header from "@/src/components/Header";
 import SearchForm from "@/src/components/SearchForm";
 import Results from "@/src/components/Results";
 import Lyrics from "@/src/components/Lyrics";
 import ArtistDetails from "@/src/components/ArtistDetails";
+import AlbumInfo from "@/src/components/AblumInfo";
 
 export default function Home() {
-  const [title, setTitle] = useState("");
-  const [searchResults, setSearchResults] = useState(null);
-  const [lyrics, setLyrics] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [artist, setArtist] = useState("");
+  // const [title, setTitle] = useState("");
+  // const [searchResults, setSearchResults] = useState(null);
+  // const [lyrics, setLyrics] = useState(null);
+  // const [loading, setLoading] = useState(false);
+  // const [artist, setArtist] = useState(null);
+  // const [album, setAlbum] = useState(null);
+  const {
+    setLoading,
+    searchResults,
+    setSearchResults,
+    setTitle,
+    lyrics,
+    artist,
+    album,
+    setLyrics,
+    loading,
+  } = useContext(AppContext);
 
   const getResults = async () => {
     try {
       setLoading(true);
+
       const res = await axios.get("api/search/", {
         params: { title },
       });
@@ -28,21 +43,22 @@ export default function Home() {
       setLoading(false);
     }
   };
-  const getLyrics = async (id) => {
-    try {
-      setSearchResults(null);
-      setLoading(true);
-      const res = await axios.get("api/lyrics/", {
-        params: { id },
-      });
-      const { data } = res;
-      setLoading(false);
-      setLyrics(data.lyrics);
-      console.log("lyrics object/state: ", data.lyrics);
-    } catch (error) {
-      setLoading(false);
-    }
-  };
+
+  // const getLyrics = async (id) => {
+  //   try {
+  //     setSearchResults(null);
+  //     setLoading(true);
+  //     const res = await axios.get("api/lyrics/", {
+  //       params: { id },
+  //     });
+  //     const { data } = res;
+  //     setLoading(false);
+  //     setLyrics(data.lyrics);
+  //     console.log("lyrics object/state: ", data.lyrics);
+  //   } catch (error) {
+  //     setLoading(false);
+  //   }
+  // };
 
   const getArtistInfo = async (id) => {
     try {
@@ -55,6 +71,22 @@ export default function Home() {
       const { data } = res;
       setLoading(false);
       setArtist(data.artist);
+    } catch (error) {
+      setLoading(false);
+    }
+  };
+
+  const getAlbumInfo = async (id) => {
+    try {
+      setSearchResults(null);
+      setLyrics(false);
+      setLoading(true);
+      const res = await axios.get("api/album/", {
+        params: { id },
+      });
+      const { data } = res;
+      setLoading(false);
+      setAlbum(data.album);
     } catch (error) {
       setLoading(false);
     }
@@ -75,7 +107,7 @@ export default function Home() {
 
       {searchResults && (
         <Results
-          getLyrics={getLyrics}
+          // getLyrics={getLyrics}
           searchResults={searchResults}
         />
       )}
@@ -84,10 +116,13 @@ export default function Home() {
         <Lyrics
           lyrics={lyrics}
           getArtistInfo={getArtistInfo}
+          getAlbumInfo={getAlbumInfo}
         />
       )}
 
       {artist && <ArtistDetails artist={artist} />}
+
+      {album && <AlbumInfo album={album} />}
     </div>
   );
 }

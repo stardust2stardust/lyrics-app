@@ -1,8 +1,31 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
+import AppContext from "./AppContext";
+import { useRouter } from "next/router";
 
-const Results = ({ getLyrics, searchResults }) => {
-  console.log(searchResults);
+const Results = () => {
+  const router = useRouter();
+
+  const { searchResults, setSearchResults, setLoading, setLyrics } =
+    useContext(AppContext);
+
+  const getLyrics = async (id) => {
+    try {
+      setSearchResults(null);
+      setLoading(true);
+      const res = await axios.get("api/lyrics/", {
+        params: { id },
+      });
+      const { data } = res;
+      setLoading(false);
+      setLyrics(data.lyrics);
+      router.push("/lyrics");
+      console.log("lyrics object/state: ", data.lyrics);
+    } catch (error) {
+      setLoading(false);
+    }
+  };
+
   return (
     <section className="">
       <ul className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">

@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Markup } from "interweave";
+import AppContext from "./AppContext";
 
-const Lyrics = ({ lyrics, getArtistInfo }) => {
-  console.log(lyrics);
+const Lyrics = ({ getArtistInfo, getAlbumInfo }) => {
+  const { lyrics } = useContext(AppContext);
+
   return (
     <div>
       <div className="mt-10 md:max-w-[500px]">
@@ -22,8 +24,7 @@ const Lyrics = ({ lyrics, getArtistInfo }) => {
           </p>
           <p
             className="text-primary text-xl "
-            // onClick={getAlbumInfo}
-          >
+            onClick={() => getAlbumInfo(lyrics.tracking_data.primary_album_id)}>
             Album:{" "}
             <span className="underline cursor-pointer hover:text-secondary">
               {lyrics.tracking_data.primary_album}
@@ -31,9 +32,9 @@ const Lyrics = ({ lyrics, getArtistInfo }) => {
           </p>
         </div>
 
-        <p className="mt-6 text-n400 text-xl">
+        <div className="mt-6 text-n400 text-xl">
           <Markup content={lyrics.lyrics.body.html} />
-        </p>
+        </div>
       </div>
     </div>
   );
