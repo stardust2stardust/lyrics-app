@@ -1,12 +1,21 @@
 import React from "react";
+import AppContext from "./AppContext";
+import { useContext } from "react";
 
-const SearchForm = ({
-  setTitle,
-  setSearchResults,
-  setLyrics,
-  getResults,
-  loading,
-}) => {
+const SearchForm = ({ getResults }) => {
+  const {
+    setLoading,
+    searchResults,
+    setSearchResults,
+    title,
+    setTitle,
+    lyrics,
+    artist,
+    album,
+    setLyrics,
+    loading,
+  } = useContext(AppContext);
+
   return (
     <div className="mb-6">
       <form
@@ -14,7 +23,7 @@ const SearchForm = ({
         onSubmit={(e) => {
           getResults();
           e.preventDefault();
-          e.stopPropagation();
+          //e.stopPropagation();
         }}>
         <input
           type="text"

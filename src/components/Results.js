@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import Image from "next/image";
 import AppContext from "./AppContext";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 const Results = () => {
   const router = useRouter();
@@ -10,18 +11,26 @@ const Results = () => {
     useContext(AppContext);
 
   const getLyrics = async (id) => {
+    const options = {
+      method: "GET",
+      url: `https://genius-song-lyrics1.p.rapidapi.com/song/lyrics/`,
+      params: { id: id },
+      headers: {
+        "x-rapidapi-host": "genius-song-lyrics1.p.rapidapi.com",
+        "x-rapidapi-key": process.env.NEXT_PUBLIC_RAPIDAPI_KEY,
+      },
+    };
+
     try {
-      setSearchResults(null);
+      //setSearchResults(null);
       setLoading(true);
-      const res = await axios.get("api/lyrics/", {
-        params: { id },
-      });
-      const { data } = res;
+      let response = await axios(options);
+      const { data } = response;
       setLoading(false);
       setLyrics(data.lyrics);
-      router.push("/lyrics");
-      console.log("lyrics object/state: ", data.lyrics);
+      router.push(`/lyrics`);
     } catch (error) {
+      console.log("error: ", error);
       setLoading(false);
     }
   };

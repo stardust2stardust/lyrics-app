@@ -11,6 +11,7 @@ export default function App({ Component, pageProps }) {
   const [loading, setLoading] = useState(false);
   const [artist, setArtist] = useState(null);
   const [album, setAlbum] = useState(null);
+
   return (
     <>
       <Head>

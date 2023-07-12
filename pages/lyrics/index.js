@@ -1,7 +1,12 @@
-import React from "react";
+import Lyrics from "@/src/components/Lyrics";
 
 const LyricsPage = () => {
-  return <div>LyricsPage</div>;
+  return (
+    <>
+      <h1>Lyrics Page</h1>
+      <Lyrics />
+    </>
+  );
 };
 
 export default LyricsPage;

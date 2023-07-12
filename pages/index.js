@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useContext, useState } from "react";
 import AppContext from "@/src/components/AppContext";
+import { useRouter } from "next/router";
 
 import Header from "@/src/components/Header";
 import SearchForm from "@/src/components/SearchForm";
@@ -10,16 +11,11 @@ import ArtistDetails from "@/src/components/ArtistDetails";
 import AlbumInfo from "@/src/components/AblumInfo";
 
 export default function Home() {
-  // const [title, setTitle] = useState("");
-  // const [searchResults, setSearchResults] = useState(null);
-  // const [lyrics, setLyrics] = useState(null);
-  // const [loading, setLoading] = useState(false);
-  // const [artist, setArtist] = useState(null);
-  // const [album, setAlbum] = useState(null);
   const {
     setLoading,
     searchResults,
     setSearchResults,
+    title,
     setTitle,
     lyrics,
     artist,
@@ -28,37 +24,7 @@ export default function Home() {
     loading,
   } = useContext(AppContext);
 
-  const getResults = async () => {
-    try {
-      setLoading(true);
-
-      const res = await axios.get("api/search/", {
-        params: { title },
-      });
-      const { data } = res;
-      console.log("data from get Results: ", data);
-      setSearchResults(data.hits);
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-    }
-  };
-
-  // const getLyrics = async (id) => {
-  //   try {
-  //     setSearchResults(null);
-  //     setLoading(true);
-  //     const res = await axios.get("api/lyrics/", {
-  //       params: { id },
-  //     });
-  //     const { data } = res;
-  //     setLoading(false);
-  //     setLyrics(data.lyrics);
-  //     console.log("lyrics object/state: ", data.lyrics);
-  //   } catch (error) {
-  //     setLoading(false);
-  //   }
-  // };
+  const router = useRouter();
 
   const getArtistInfo = async (id) => {
     try {
@@ -92,37 +58,41 @@ export default function Home() {
     }
   };
 
+  const getResults = async () => {
+    try {
+      setLoading(true);
+      const res = await axios.get("api/search/", {
+        params: { title },
+      });
+      const { data } = res;
+      console.log(data);
+      console.log("data from get Results: ", data);
+      setSearchResults(data.hits);
+      setLoading(false);
+      router.push("/results");
+    } catch (error) {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="bg-n950 flex flex-col md:px-12 p-5 relative font-poppins items-center min-h-screen">
       <div className="flex flex-col gap-8">
         <Header />
-        <SearchForm
-          setTitle={setTitle}
-          setSearchResults={setSearchResults}
-          setLyrics={setLyrics}
-          getResults={getResults}
-          loading={loading}
-        />
+        <SearchForm getResults={getResults} />
       </div>
 
-      {searchResults && (
-        <Results
-          // getLyrics={getLyrics}
-          searchResults={searchResults}
-        />
-      )}
-
-      {lyrics && (
+      {/* {lyrics && (
         <Lyrics
           lyrics={lyrics}
           getArtistInfo={getArtistInfo}
           getAlbumInfo={getAlbumInfo}
         />
-      )}
+      )} */}
 
-      {artist && <ArtistDetails artist={artist} />}
+      {/* {artist && <ArtistDetails artist={artist} />}
 
-      {album && <AlbumInfo album={album} />}
+      {album && <AlbumInfo album={album} />} */}
     </div>
   );
 }
