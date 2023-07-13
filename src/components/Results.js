@@ -22,7 +22,6 @@ const Results = () => {
     };
 
     try {
-      //setSearchResults(null);
       setLoading(true);
       let response = await axios(options);
       const { data } = response;
@@ -39,7 +38,7 @@ const Results = () => {
     <section className="p-8">
       <h1 className="text-primary text-center text-3xl mb-10">{`Results for '${title}'`}</h1>
       <ul className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-[1200px] mx-auto">
-        {searchResults.map((song) => (
+        {searchResults?.map((song) => (
           <li
             key={song.result.id}
             className="">
