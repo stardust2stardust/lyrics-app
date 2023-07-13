@@ -7,7 +7,7 @@ import axios from "axios";
 const Results = () => {
   const router = useRouter();
 
-  const { searchResults, setSearchResults, setLoading, setLyrics } =
+  const { title, searchResults, setSearchResults, setLoading, setLyrics } =
     useContext(AppContext);
 
   const getLyrics = async (id) => {
@@ -36,8 +36,9 @@ const Results = () => {
   };
 
   return (
-    <section className="">
-      <ul className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    <section className="p-8">
+      <h1 className="text-primary text-center text-3xl mb-10">{`Results for '${title}'`}</h1>
+      <ul className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-[1200px] mx-auto">
         {searchResults.map((song) => (
           <li
             key={song.result.id}

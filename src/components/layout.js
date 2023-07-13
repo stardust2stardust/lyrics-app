@@ -5,7 +5,7 @@ export default function Layout({ children }) {
   return (
     <div>
       <Navbar />
-      <main>{children}</main>
+      <main className="bg-n950">{children}</main>
       <Footer />
     </div>
   );
