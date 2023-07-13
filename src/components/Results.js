@@ -28,7 +28,7 @@ const Results = () => {
       const { data } = response;
       setLoading(false);
       setLyrics(data.lyrics);
-      router.push(`/lyrics`);
+      router.push(`/lyrics/${data.lyrics.tracking_data.title}`);
     } catch (error) {
       console.log("error: ", error);
       setLoading(false);

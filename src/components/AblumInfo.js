@@ -1,10 +1,10 @@
-import React from "react";
-import { Markup } from "interweave";
-import Link from "next/link";
 import Image from "next/image";
+import React, { useContext } from "react";
+import AppContext from "./AppContext";
 
-const AlbumInfo = ({ album }) => {
-  console.log("ALBUM INFO: ", album);
+const AlbumInfo = () => {
+  const { album } = useContext(AppContext);
+
   return (
     <section className="p-3 text-n300">
       <div className="my-10 flex flex-col items-center gap-3">

@@ -1,9 +1,13 @@
-import React from "react";
 import { Markup } from "interweave";
 import Link from "next/link";
 import Image from "next/image";
+import React, { useContext } from "react";
+import AppContext from "./AppContext";
 
-const ArtistDetails = ({ artist }) => {
+const ArtistDetails = () => {
+  const { artist } = useContext(AppContext);
+
+  console.log("artist: ", artist);
   return (
     <section className="p-3 text-n300">
       <div className="my-10 flex flex-col items-center gap-5 md:flex-row md:justify-center ">
@@ -28,9 +32,9 @@ const ArtistDetails = ({ artist }) => {
         </div>
       </div>
 
-      <p className="max-w-[65ch]">
+      <div className="max-w-[65ch]">
         <Markup content={artist.description.html} />
-      </p>
+      </div>
     </section>
   );
 };
