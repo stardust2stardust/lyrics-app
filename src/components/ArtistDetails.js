@@ -18,14 +18,14 @@ const ArtistDetails = () => {
       </button>
       {artist && (
         <section className="p-8 flex flex-col gap-5 ">
-          <div className="flex flex-col items-center gap-5 md:flex-row md:justify-center">
+          <div className="flex flex-col items-center gap-5 md:flex-row md:justify-center mx-auto">
             <div className="md:w-1/3 md:flex md:justify-end">
               <Image
                 src={artist.image_url}
                 alt={artist.name}
                 width={810}
                 height={810}
-                className="w-48 h-48 rounded-full"
+                className="w-48 rounded-full"
               />
             </div>
             <div className="text-center">
@@ -40,7 +40,7 @@ const ArtistDetails = () => {
             </div>
           </div>
 
-          <div className="max-w-[65ch] text-justify">
+          <div className="max-w-[65ch] text-justify mx-auto">
             <Markup content={artist.description.html} />
           </div>
         </section>

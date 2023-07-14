@@ -4,13 +4,13 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <nav className="bg-n950 flex justify-between items-center p-3 text-primary font-bold border-b-2 border-primary">
-      <div>
+    <nav className="bg-n950 flex justify-between items-center p-2 px-5 text-primary font-bold border-b-2 border-primary">
+      <Link href="/">
         <Image
           src={noteIcon}
           alt=""
         />
-      </div>
+      </Link>
       <Link href="/">New Search</Link>
     </nav>
   );
