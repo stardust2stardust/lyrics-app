@@ -65,35 +65,39 @@ const Lyrics = () => {
         onClick={() => router.back()}>
         &lt; Back
       </button>
-      <section className="md:max-w-[500px] flex flex-col items-center mx-auto p-8">
-        <div className="text-center flex flex-col gap-3">
-          <h2 className="text-3xl font-bold text-primary">
-            Lyrics for {lyrics.tracking_data.title}
-          </h2>
-          <p
-            className="text-primary text-xl"
-            onClick={() =>
-              getArtistInfo(lyrics.tracking_data.primary_artist_id)
-            }>
-            Artist:{" "}
-            <span className="underline  cursor-pointer hover:text-secondary">
-              {lyrics.tracking_data.primary_artist}
-            </span>
-          </p>
-          <p
-            className="text-primary text-xl "
-            onClick={() => getAlbumInfo(lyrics.tracking_data.primary_album_id)}>
-            Album:{" "}
-            <span className="underline cursor-pointer hover:text-secondary">
-              {lyrics.tracking_data.primary_album}
-            </span>
-          </p>
-        </div>
+      {lyrics && (
+        <section className="md:max-w-[500px] flex flex-col items-center mx-auto p-8">
+          <div className="text-center flex flex-col gap-3">
+            <h2 className="text-3xl font-bold text-primary">
+              Lyrics for {lyrics.tracking_data.title}
+            </h2>
+            <p
+              className="text-primary text-xl"
+              onClick={() =>
+                getArtistInfo(lyrics.tracking_data.primary_artist_id)
+              }>
+              Artist:{" "}
+              <span className="underline  cursor-pointer hover:text-secondary">
+                {lyrics.tracking_data.primary_artist}
+              </span>
+            </p>
+            <p
+              className="text-primary text-xl "
+              onClick={() =>
+                getAlbumInfo(lyrics.tracking_data.primary_album_id)
+              }>
+              Album:{" "}
+              <span className="underline cursor-pointer hover:text-secondary">
+                {lyrics.tracking_data.primary_album}
+              </span>
+            </p>
+          </div>
 
-        <div className="mt-6 text-n400 text-xl text-center">
-          <Markup content={lyrics.lyrics.body.html} />
-        </div>
-      </section>
+          <div className="mt-6 text-n400 text-xl text-center">
+            <Markup content={lyrics.lyrics.body.html} />
+          </div>
+        </section>
+      )}
     </div>
   );
 };

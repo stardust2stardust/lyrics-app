@@ -15,27 +15,29 @@ const AlbumInfo = () => {
         onClick={() => router.back()}>
         &lt; Back
       </button>
-      <section className="my-10 flex flex-col items-center gap-5 p-8">
-        <div className="">
-          <Image
-            src={album.cover_art_thumbnail_url}
-            alt={album.name}
-            width={300}
-            height={300}
-            className=""
-          />
-        </div>
-        <div className="text-center">
-          <h1 className="text-2xl md:text-3xl font-bold text-primary my-2">
-            {album.name}
-          </h1>
-          <h2 className="text-xl my-2">by {album.artist.name}</h2>
-          <p>{album.release_date_for_display}</p>
-        </div>
-        <div className="max-w-[65ch] text-justify">
-          {album.description_preview}
-        </div>
-      </section>
+      {album && (
+        <section className="my-10 flex flex-col items-center gap-5 p-8">
+          <div className="">
+            <Image
+              src={album.cover_art_thumbnail_url}
+              alt={album.name}
+              width={300}
+              height={300}
+              className=""
+            />
+          </div>
+          <div className="text-center">
+            <h1 className="text-2xl md:text-3xl font-bold text-primary my-2">
+              {album.name}
+            </h1>
+            <h2 className="text-xl my-2">by {album.artist.name}</h2>
+            <p>{album.release_date_for_display}</p>
+          </div>
+          <div className="max-w-[65ch] text-justify">
+            {album.description_preview}
+          </div>
+        </section>
+      )}
     </div>
   );
 };
